@@ -14,7 +14,12 @@ registerUser.addEventListener('click', function () {
         firstName: 0,
         lastName: 0,
     }
-    let fullName = prompt('Введите имя и фамилию через пробел')
+    let fullName;
+    do {
+        fullName = prompt('Введите имя и фамилию через пробел')
+    // console.log(fullName.split(' ').length);
+    } while (fullName.split(' ').length !== 2)
+
     newUser.login = prompt('Введите логин')
     newUser.password = prompt('Введите пароль')
     newUser.firstName = fullName.split(' ')[0]
@@ -38,7 +43,7 @@ let render = function () {
 }
 
 let showLocalStorage = function() {
-    allUser = JSON.parse(localStorage.getItem('allusers')) || []
+    allUser = JSON.parse(localStorage.getItem('allusres')) || []
     render()
 }
 showLocalStorage()
