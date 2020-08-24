@@ -59,10 +59,10 @@ login.addEventListener('click', () => {
     let log = prompt('Введите логин')
     let pass = prompt('Введите пароль')
     console.log(allUser);
-    let a = allUser.find(item => item.login === log && item.password === pass)
-    if (a === undefined) {
+    let check = allUser.find(item => item.login === log && item.password === pass)
+    if (check === undefined) {
         alert('Пользователь не найден')
-    } else { usernameSpan.textContent = a.firstName }
+    } else { usernameSpan.textContent = check.firstName }
 })
 
 let showLocalStorage = function() {
