@@ -1,13 +1,14 @@
 'use strict'
 let registerUser = document.querySelector('#registerUser')
 let list = document.querySelector('#list')
-let data = new Date();
-let dayOfMonth = data.getMonth()
+
 let arrOfMonth = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа','сентября', 'октября', 'ноября', 'декабря']
 
 
 
 let allUser = [];
+
+const addZero = n => n < 10 ? '0'+ n : n;
 
 registerUser.addEventListener('click', function () {
     let newUser = {
@@ -18,13 +19,16 @@ registerUser.addEventListener('click', function () {
     do {
         fullName = prompt('Введите имя и фамилию через пробел')
     // console.log(fullName.split(' ').length);
-    } while (fullName.split(' ').length !== 2)
+    } while (fullName.trim().split(' ').length !== 2)
+
+    let data = new Date();
+    let dayOfMonth = data.getMonth()
 
     newUser.login = prompt('Введите логин')
     newUser.password = prompt('Введите пароль')
     newUser.firstName = fullName.split(' ')[0]
     newUser.lastName = fullName.split(' ')[1]
-    newUser.regData = `${data.getDate()} ${arrOfMonth[dayOfMonth]} ${data.getFullYear()}г.,${data.getHours()}:${data.getMinutes()}:${data.getSeconds()}`
+    newUser.regData = `${addZero(data.getDate())} ${arrOfMonth[dayOfMonth]} ${data.getFullYear()}г.,${addZero(data.getHours())}:${addZero(data.getMinutes())}:${addZero(data.getSeconds())} <button class="todo-remove">-</button>`
     console.log(newUser);
     allUser.push(newUser);
     localStorage.setItem('allusres', JSON.stringify(allUser));
